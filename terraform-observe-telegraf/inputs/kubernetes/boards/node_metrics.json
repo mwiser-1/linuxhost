@@ -1,0 +1,284 @@
+{
+  "bindings": {
+    "node_metrics": "${node_metrics}"
+  },
+  "sections": [
+    {
+      "card": {
+        "cardType": "section",
+        "closed": false,
+        "title": "Summary"
+      },
+      "items": [
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Node Bytes Sent",
+            "visualization": {
+              "config": {
+                "color": "Default",
+                "colorConfigType": "Color",
+                "fieldConfig": {
+                  "visible": false
+                },
+                "thresholds": null,
+                "type": "singlefield"
+              },
+              "source": {
+                "metric": {
+                  "__typename": "Metric",
+                  "aggregate": "sum",
+                  "datasetId": "$node_metrics",
+                  "description": "Total bytes sent",
+                  "groupBy": [],
+                  "interval": null,
+                  "label": "Node Bytes Sent",
+                  "link": ${link},
+                  "name": "network_tx_bytes",
+                  "rollup": "rate",
+                  "type": "cumulativeCounter",
+                  "unit": "bytes/s"
+                },
+                "type": "metric"
+              },
+              "type": "singlevalue"
+            }
+          },
+          "layout": {
+            "h": 8,
+            "w": 3,
+            "x": 0,
+            "y": 0
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Node Bytes Sent",
+            "visualization": {
+              "config": {
+                "color": "Default",
+                "hideGridLines": true,
+                "type": "xy",
+                "xConfig": {
+                  "visible": false
+                },
+                "yConfig": {
+                  "unit": "bytes",
+                  "visible": false
+                }
+              },
+              "source": {
+                "metric": {
+                  "__typename": "Metric",
+                  "aggregate": "sum",
+                  "datasetId": "$node_metrics",
+                  "description": "Total bytes sent",
+                  "groupBy": ${group_by},
+                  "interval": null,
+                  "label": "Node Bytes Sent",
+                  "link": ${link},
+                  "name": "network_tx_bytes",
+                  "rollup": "rate",
+                  "type": "cumulativeCounter",
+                  "unit": "bytes/s"
+                },
+                "type": "metric"
+              },
+              "type": "timeseries"
+            }
+          },
+          "layout": {
+            "h": 8,
+            "w": 9,
+            "x": 3,
+            "y": 0
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Node Bytes Received",
+            "visualization": {
+              "config": {
+                "color": "Default",
+                "hideGridLines": true,
+                "type": "xy",
+                "xConfig": {
+                  "visible": false
+                },
+                "yConfig": {
+                  "unit": "bytes",
+                  "visible": false
+                }
+              },
+              "source": {
+                "metric": {
+                  "__typename": "Metric",
+                  "aggregate": "sum",
+                  "datasetId": "$node_metrics",
+                  "description": "Total bytes received",
+                  "groupBy": ${group_by},
+                  "interval": null,
+                  "label": "Node Bytes Received",
+                  "link": ${link},
+                  "name": "network_rx_bytes",
+                  "rollup": "rate",
+                  "type": "cumulativeCounter",
+                  "unit": "bytes/s"
+                },
+                "type": "metric"
+              },
+              "type": "timeseries"
+            }
+          },
+          "layout": {
+            "h": 8,
+            "w": 9,
+            "x": 3,
+            "y": 8
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Node Bytes Received",
+            "visualization": {
+              "config": {
+                "color": "Default",
+                "colorConfigType": "Color",
+                "fieldConfig": {
+                  "visible": false
+                },
+                "thresholds": null,
+                "type": "singlefield"
+              },
+              "source": {
+                "metric": {
+                  "__typename": "Metric",
+                  "aggregate": "sum",
+                  "datasetId": "$node_metrics",
+                  "description": "Total bytes received",
+                  "groupBy": [],
+                  "interval": null,
+                  "label": "Node Bytes Received",
+                  "link": ${link},
+                  "name": "network_rx_bytes",
+                  "rollup": "rate",
+                  "type": "cumulativeCounter",
+                  "unit": "bytes/s"
+                },
+                "type": "metric"
+              },
+              "type": "singlevalue"
+            }
+          },
+          "layout": {
+            "h": 8,
+            "w": 3,
+            "x": 0,
+            "y": 8
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Node Rx Errors",
+            "visualization": {
+              "config": {
+                "color": "Default",
+                "colorConfigType": "Threshold",
+                "fieldConfig": {
+                  "visible": false
+                },
+                "thresholds": {
+                  "startingColor": "Default",
+                  "thresholds": [
+                    {
+                      "exceedsColor": "Yellow",
+                      "value": 0.0001
+                    }
+                  ]
+                },
+                "type": "singlefield"
+              },
+              "source": {
+                "metric": {
+                  "__typename": "Metric",
+                  "aggregate": "sum",
+                  "datasetId": "$node_metrics",
+                  "description": "Total receive error count",
+                  "groupBy": [],
+                  "interval": null,
+                  "label": "Node Rx Errors",
+                  "link": ${link},
+                  "name": "network_rx_errors",
+                  "rollup": "rate",
+                  "type": "cumulativeCounter",
+                  "unit": "/s"
+                },
+                "type": "metric"
+              },
+              "type": "singlevalue"
+            }
+          },
+          "layout": {
+            "h": 6,
+            "w": 6,
+            "x": 0,
+            "y": 16
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Node Tx Errors",
+            "visualization": {
+              "config": {
+                "color": "Default",
+                "colorConfigType": "Threshold",
+                "fieldConfig": {
+                  "visible": false
+                },
+                "thresholds": {
+                  "startingColor": "Default",
+                  "thresholds": [
+                    {
+                      "exceedsColor": "Yellow",
+                      "value": 1e-05
+                    }
+                  ]
+                },
+                "type": "singlefield"
+              },
+              "source": {
+                "metric": {
+                  "__typename": "Metric",
+                  "aggregate": "sum",
+                  "datasetId": "$node_metrics",
+                  "description": "Total number of transmission errors",
+                  "groupBy": [],
+                  "interval": null,
+                  "label": "Node Tx Errors",
+                  "link": ${link},
+                  "name": "network_tx_errors",
+                  "rollup": "rate",
+                  "type": "cumulativeCounter",
+                  "unit": "/s"
+                },
+                "type": "metric"
+              },
+              "type": "singlevalue"
+            }
+          },
+          "layout": {
+            "h": 6,
+            "w": 6,
+            "x": 6,
+            "y": 16
+          }
+        }
+      ]
+    }
+  ]
+}

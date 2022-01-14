@@ -1,0 +1,862 @@
+{
+      "bindings": {
+        "dataset_server_host": "${dataset_server_host}",
+        "dataset_telegraf_netMetrics": "${dataset_telegraf_netMetrics}",
+        "dataset_server_interface": "${dataset_server_interface}"
+      },
+      "sections": [
+        {
+          "card": {
+            "cardType": "section",
+            "title": "Summary",
+            "closed": false
+          },
+          "items": [
+            {
+              "card": {
+                "title": "interface",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "list",
+                  "source": {
+                    "type": "stats",
+                    "stat": {
+                      "fieldId": "interface"
+                    }
+                  },
+                  "config": {
+                    "type": "list",
+                    "style": "name"
+                  }
+                }
+              },
+              "layout": {
+                "w": 4,
+                "h": 8,
+                "x": 0,
+                "y": 0
+              }
+            },
+            {
+              "card": {
+                "title": "host_",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "list",
+                  "source": {
+                    "type": "stats",
+                    "stat": {
+                      "link": {
+                        "targetDataset": "$dataset_server_host",
+                        "srcFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "label": "host",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "linked"
+                      }
+                    }
+                  },
+                  "config": {
+                    "type": "list",
+                    "style": "twocolumn"
+                  }
+                }
+              },
+              "layout": {
+                "w": 4,
+                "h": 8,
+                "x": 4,
+                "y": 0
+              }
+            },
+            {
+              "card": {
+                "title": "mac_address",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "circular",
+                  "source": {
+                    "type": "stats",
+                    "stat": {
+                      "fieldId": "mac_address"
+                    }
+                  },
+                  "config": {
+                    "type": "arc",
+                    "innerRadius": 0.6,
+                    "legend": {
+                      "visible": true,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 4,
+                "h": 8,
+                "x": 8,
+                "y": 0
+              }
+            },
+            {
+              "card": {
+                "title": "link_speed",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "list",
+                  "source": {
+                    "type": "stats",
+                    "stat": {
+                      "fieldId": "link_speed"
+                    }
+                  },
+                  "config": {
+                    "type": "list",
+                    "style": "twocolumn"
+                  }
+                }
+              },
+              "layout": {
+                "w": 4,
+                "h": 8,
+                "x": 0,
+                "y": 8
+              }
+            },
+            {
+              "card": {
+                "title": "mtu",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "circular",
+                  "source": {
+                    "type": "stats",
+                    "stat": {
+                      "fieldId": "mtu"
+                    }
+                  },
+                  "config": {
+                    "type": "arc",
+                    "innerRadius": 0.6,
+                    "legend": {
+                      "visible": true,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 4,
+                "h": 8,
+                "x": 4,
+                "y": 8
+              }
+            },
+            {
+              "card": {
+                "title": "flags",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "circular",
+                  "source": {
+                    "type": "stats",
+                    "stat": {
+                      "fieldId": "flags"
+                    }
+                  },
+                  "config": {
+                    "type": "arc",
+                    "innerRadius": 0.6,
+                    "legend": {
+                      "visible": true,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 4,
+                "h": 8,
+                "x": 8,
+                "y": 8
+              }
+            }
+          ]
+        },
+        {
+          "card": {
+            "cardType": "section",
+            "title": "Metrics",
+            "closed": false
+          },
+          "items": [
+            {
+              "card": {
+                "title": "Bytes Recv",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "timeseries",
+                  "source": {
+                    "type": "metric",
+                    "metric": {
+                      "id": {
+                        "datasetId": "$dataset_telegraf_netMetrics",
+                        "name": "bytes_recv"
+                      },
+                      "name": "bytes_recv",
+                      "label": "Bytes Recv",
+                      "type": "gauge",
+                      "unit": "bytes",
+                      "description": "Bytes received\n",
+                      "rollup": "rate",
+                      "aggregate": "sum",
+                      "interval": null,
+                      "userDefined": true,
+                      "heuristics": {
+                        "validLinkLabels": [
+                          "Host",
+                          "interface"
+                        ],
+                        "numOfPoints": "720",
+                        "cardinality": "2",
+                        "__typename": "MetricHeuristics"
+                      },
+                      "datasetId": "$dataset_telegraf_netMetrics",
+                      "link": {
+                        "targetDataset": "$dataset_server_interface",
+                        "srcFields": [
+                          "host",
+                          "datacenter",
+                          "interface"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter",
+                          "interface"
+                        ],
+                        "label": "interface",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "foreign"
+                      },
+                      "groupBy": [
+                        "host",
+                        "datacenter",
+                        "interface"
+                      ]
+                    }
+                  },
+                  "config": {
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "visible": true,
+                      "unit": "bytes"
+                    },
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "visible": false,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 10,
+                "x": 0,
+                "y": 0
+              }
+            },
+            {
+              "card": {
+                "title": "Bytes Sent",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "timeseries",
+                  "source": {
+                    "type": "metric",
+                    "metric": {
+                      "id": {
+                        "datasetId": "$dataset_telegraf_netMetrics",
+                        "name": "bytes_sent"
+                      },
+                      "name": "bytes_sent",
+                      "label": "Bytes Sent",
+                      "type": "gauge",
+                      "unit": "bytes",
+                      "description": "Bytes transmitted\n",
+                      "rollup": "rate",
+                      "aggregate": "sum",
+                      "interval": null,
+                      "userDefined": true,
+                      "heuristics": {
+                        "validLinkLabels": [
+                          "Host",
+                          "interface"
+                        ],
+                        "numOfPoints": "720",
+                        "cardinality": "2",
+                        "__typename": "MetricHeuristics"
+                      },
+                      "datasetId": "$dataset_telegraf_netMetrics",
+                      "link": {
+                        "targetDataset": "$dataset_server_interface",
+                        "srcFields": [
+                          "host",
+                          "datacenter",
+                          "interface"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter",
+                          "interface"
+                        ],
+                        "label": "interface",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "foreign"
+                      },
+                      "groupBy": [
+                        "host",
+                        "datacenter",
+                        "interface"
+                      ]
+                    }
+                  },
+                  "config": {
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "visible": true,
+                      "unit": "bytes"
+                    },
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "visible": false,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 10,
+                "x": 6,
+                "y": 0
+              }
+            },
+            {
+              "card": {
+                "title": "Drop In",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "timeseries",
+                  "source": {
+                    "type": "metric",
+                    "metric": {
+                      "id": {
+                        "datasetId": "$dataset_telegraf_netMetrics",
+                        "name": "drop_in"
+                      },
+                      "name": "drop_in",
+                      "label": "Drop In",
+                      "type": "gauge",
+                      "unit": "",
+                      "description": "Packets recieved which were dropped by the interface\n",
+                      "rollup": "rate",
+                      "aggregate": "sum",
+                      "interval": null,
+                      "userDefined": true,
+                      "heuristics": {
+                        "validLinkLabels": [
+                          "Host",
+                          "interface"
+                        ],
+                        "numOfPoints": "720",
+                        "cardinality": "2",
+                        "__typename": "MetricHeuristics"
+                      },
+                      "datasetId": "$dataset_telegraf_netMetrics",
+                      "link": {
+                        "targetDataset": "$dataset_server_interface",
+                        "srcFields": [
+                          "host",
+                          "datacenter",
+                          "interface"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter",
+                          "interface"
+                        ],
+                        "label": "interface",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "foreign"
+                      },
+                      "groupBy": [
+                        "host",
+                        "datacenter",
+                        "interface"
+                      ]
+                    }
+                  },
+                  "config": {
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "visible": true,
+                      "unit": ""
+                    },
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "visible": false,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 10,
+                "x": 6,
+                "y": 10
+              }
+            },
+            {
+              "card": {
+                "title": "Drop Out",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "timeseries",
+                  "source": {
+                    "type": "metric",
+                    "metric": {
+                      "id": {
+                        "datasetId": "$dataset_telegraf_netMetrics",
+                        "name": "drop_out"
+                      },
+                      "name": "drop_out",
+                      "label": "Drop Out",
+                      "type": "gauge",
+                      "unit": "",
+                      "description": "Packets transmitted which were dropped by the interface\n",
+                      "rollup": "rate",
+                      "aggregate": "sum",
+                      "interval": null,
+                      "userDefined": true,
+                      "heuristics": {
+                        "validLinkLabels": [
+                          "Host",
+                          "interface"
+                        ],
+                        "numOfPoints": "720",
+                        "cardinality": "2",
+                        "__typename": "MetricHeuristics"
+                      },
+                      "datasetId": "$dataset_telegraf_netMetrics",
+                      "link": {
+                        "targetDataset": "$dataset_server_interface",
+                        "srcFields": [
+                          "host",
+                          "datacenter",
+                          "interface"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter",
+                          "interface"
+                        ],
+                        "label": "interface",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "foreign"
+                      },
+                      "groupBy": [
+                        "host",
+                        "datacenter",
+                        "interface"
+                      ]
+                    }
+                  },
+                  "config": {
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "visible": true,
+                      "unit": ""
+                    },
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "visible": false,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 10,
+                "x": 0,
+                "y": 10
+              }
+            },
+            {
+              "card": {
+                "title": "Err In",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "timeseries",
+                  "source": {
+                    "type": "metric",
+                    "metric": {
+                      "id": {
+                        "datasetId": "$dataset_telegraf_netMetrics",
+                        "name": "err_in"
+                      },
+                      "name": "err_in",
+                      "label": "Err In",
+                      "type": "gauge",
+                      "unit": "",
+                      "description": "Receive errors which were detected by the interface\n",
+                      "rollup": "rate",
+                      "aggregate": "sum",
+                      "interval": null,
+                      "userDefined": true,
+                      "heuristics": {
+                        "validLinkLabels": [
+                          "Host",
+                          "interface"
+                        ],
+                        "numOfPoints": "720",
+                        "cardinality": "2",
+                        "__typename": "MetricHeuristics"
+                      },
+                      "datasetId": "$dataset_telegraf_netMetrics",
+                      "link": {
+                        "targetDataset": "$dataset_server_interface",
+                        "srcFields": [
+                          "host",
+                          "datacenter",
+                          "interface"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter",
+                          "interface"
+                        ],
+                        "label": "interface",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "foreign"
+                      },
+                      "groupBy": [
+                        "host",
+                        "datacenter",
+                        "interface"
+                      ]
+                    }
+                  },
+                  "config": {
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "visible": true,
+                      "unit": ""
+                    },
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "visible": false,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 10,
+                "x": 6,
+                "y": 20
+              }
+            },
+            {
+              "card": {
+                "title": "Err Out",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "timeseries",
+                  "source": {
+                    "type": "metric",
+                    "metric": {
+                      "id": {
+                        "datasetId": "$dataset_telegraf_netMetrics",
+                        "name": "err_out"
+                      },
+                      "name": "err_out",
+                      "label": "Err Out",
+                      "type": "gauge",
+                      "unit": "",
+                      "description": "Transmit errors which were detected by the interface\n",
+                      "rollup": "rate",
+                      "aggregate": "sum",
+                      "interval": null,
+                      "userDefined": true,
+                      "heuristics": {
+                        "validLinkLabels": [
+                          "Host",
+                          "interface"
+                        ],
+                        "numOfPoints": "720",
+                        "cardinality": "2",
+                        "__typename": "MetricHeuristics"
+                      },
+                      "datasetId": "$dataset_telegraf_netMetrics",
+                      "link": {
+                        "targetDataset": "$dataset_server_interface",
+                        "srcFields": [
+                          "host",
+                          "datacenter",
+                          "interface"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter",
+                          "interface"
+                        ],
+                        "label": "interface",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "foreign"
+                      },
+                      "groupBy": [
+                        "host",
+                        "datacenter",
+                        "interface"
+                      ]
+                    }
+                  },
+                  "config": {
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "visible": true,
+                      "unit": ""
+                    },
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "visible": false,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 10,
+                "x": 0,
+                "y": 20
+              }
+            },
+            {
+              "card": {
+                "title": "Packets Recv",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "timeseries",
+                  "source": {
+                    "type": "metric",
+                    "metric": {
+                      "id": {
+                        "datasetId": "$dataset_telegraf_netMetrics",
+                        "name": "packets_recv"
+                      },
+                      "name": "packets_recv",
+                      "label": "Packets Recv",
+                      "type": "gauge",
+                      "unit": "",
+                      "description": "Packets received\n",
+                      "rollup": "rate",
+                      "aggregate": "sum",
+                      "interval": null,
+                      "userDefined": true,
+                      "heuristics": {
+                        "validLinkLabels": [
+                          "Host",
+                          "interface"
+                        ],
+                        "numOfPoints": "720",
+                        "cardinality": "2",
+                        "__typename": "MetricHeuristics"
+                      },
+                      "datasetId": "$dataset_telegraf_netMetrics",
+                      "link": {
+                        "targetDataset": "$dataset_server_interface",
+                        "srcFields": [
+                          "host",
+                          "datacenter",
+                          "interface"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter",
+                          "interface"
+                        ],
+                        "label": "interface",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "foreign"
+                      },
+                      "groupBy": [
+                        "host",
+                        "datacenter",
+                        "interface"
+                      ]
+                    }
+                  },
+                  "config": {
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "visible": true,
+                      "unit": ""
+                    },
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "visible": false,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 10,
+                "x": 6,
+                "y": 30
+              }
+            },
+            {
+              "card": {
+                "title": "Packets Sent",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "timeseries",
+                  "source": {
+                    "type": "metric",
+                    "metric": {
+                      "id": {
+                        "datasetId": "$dataset_telegraf_netMetrics",
+                        "name": "packets_sent"
+                      },
+                      "name": "packets_sent",
+                      "label": "Packets Sent",
+                      "type": "gauge",
+                      "unit": "",
+                      "description": "Packets transmitted\n",
+                      "rollup": "rate",
+                      "aggregate": "sum",
+                      "interval": null,
+                      "userDefined": true,
+                      "heuristics": {
+                        "validLinkLabels": [
+                          "Host",
+                          "interface"
+                        ],
+                        "numOfPoints": "720",
+                        "cardinality": "2",
+                        "__typename": "MetricHeuristics"
+                      },
+                      "datasetId": "$dataset_telegraf_netMetrics",
+                      "link": {
+                        "targetDataset": "$dataset_server_interface",
+                        "srcFields": [
+                          "host",
+                          "datacenter",
+                          "interface"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter",
+                          "interface"
+                        ],
+                        "label": "interface",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "foreign"
+                      },
+                      "groupBy": [
+                        "host",
+                        "datacenter",
+                        "interface"
+                      ]
+                    }
+                  },
+                  "config": {
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "visible": true,
+                      "unit": ""
+                    },
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "visible": false,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 10,
+                "x": 0,
+                "y": 30
+              }
+            }
+          ]
+        }
+      ]
+   }

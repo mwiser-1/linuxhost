@@ -1,0 +1,683 @@
+{
+      "bindings": {
+        "dataset_server_host": "${dataset_server_host}",
+        "dataset_telegraf_diskMetrics": "${dataset_telegraf_diskMetrics}",
+        "dataset_server_volume": "${dataset_server_volume}"
+      },
+      "sections": [
+        {
+          "card": {
+            "cardType": "section",
+            "title": "Summary",
+            "closed": false
+          },
+          "items": [
+            {
+              "card": {
+                "title": "volume",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "list",
+                  "source": {
+                    "type": "stats",
+                    "stat": {
+                      "fieldId": "volume"
+                    }
+                  },
+                  "config": {
+                    "type": "list",
+                    "style": "name"
+                  }
+                }
+              },
+              "layout": {
+                "w": 4,
+                "h": 8,
+                "x": 0,
+                "y": 0
+              }
+            },
+            {
+              "card": {
+                "title": "host_",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "list",
+                  "source": {
+                    "type": "stats",
+                    "stat": {
+                      "link": {
+                        "targetDataset": "$dataset_server_host",
+                        "srcFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "label": "host",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "linked"
+                      }
+                    }
+                  },
+                  "config": {
+                    "type": "list",
+                    "style": "twocolumn"
+                  }
+                }
+              },
+              "layout": {
+                "w": 4,
+                "h": 8,
+                "x": 4,
+                "y": 0
+              }
+            },
+            {
+              "card": {
+                "title": "device",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "list",
+                  "source": {
+                    "type": "stats",
+                    "stat": {
+                      "fieldId": "device"
+                    }
+                  },
+                  "config": {
+                    "type": "list",
+                    "style": "twocolumn"
+                  }
+                }
+              },
+              "layout": {
+                "w": 4,
+                "h": 8,
+                "x": 8,
+                "y": 0
+              }
+            },
+            {
+              "card": {
+                "title": "path",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "list",
+                  "source": {
+                    "type": "stats",
+                    "stat": {
+                      "fieldId": "path"
+                    }
+                  },
+                  "config": {
+                    "type": "list",
+                    "style": "twocolumn"
+                  }
+                }
+              },
+              "layout": {
+                "w": 4,
+                "h": 8,
+                "x": 0,
+                "y": 8
+              }
+            },
+            {
+              "card": {
+                "title": "type",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "list",
+                  "source": {
+                    "type": "stats",
+                    "stat": {
+                      "fieldId": "type"
+                    }
+                  },
+                  "config": {
+                    "type": "list",
+                    "style": "twocolumn"
+                  }
+                }
+              },
+              "layout": {
+                "w": 4,
+                "h": 8,
+                "x": 4,
+                "y": 8
+              }
+            },
+            {
+              "card": {
+                "title": "flags",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "list",
+                  "source": {
+                    "type": "stats",
+                    "stat": {
+                      "fieldId": "flags"
+                    }
+                  },
+                  "config": {
+                    "type": "list",
+                    "style": "twocolumn"
+                  }
+                }
+              },
+              "layout": {
+                "w": 4,
+                "h": 8,
+                "x": 8,
+                "y": 8
+              }
+            }
+          ]
+        },
+        {
+          "card": {
+            "cardType": "section",
+            "title": "Metrics",
+            "closed": false
+          },
+          "items": [
+            {
+              "card": {
+                "title": "Free",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "timeseries",
+                  "source": {
+                    "type": "metric",
+                    "metric": {
+                      "id": {
+                        "datasetId": "$dataset_telegraf_diskMetrics",
+                        "name": "free"
+                      },
+                      "name": "free",
+                      "label": "Free",
+                      "type": "gauge",
+                      "unit": "bytes",
+                      "description": "Total Bytes free\n",
+                      "rollup": "avg",
+                      "aggregate": "sum",
+                      "interval": null,
+                      "userDefined": true,
+                      "heuristics": {
+                        "validLinkLabels": [
+                          "Host",
+                          "volume"
+                        ],
+                        "numOfPoints": "375",
+                        "cardinality": "3",
+                        "__typename": "MetricHeuristics"
+                      },
+                      "datasetId": "$dataset_telegraf_diskMetrics",
+                      "link": {
+                        "targetDataset": "$dataset_server_volume",
+                        "srcFields": [
+                          "host",
+                          "datacenter",
+                          "volume"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter",
+                          "volume"
+                        ],
+                        "label": "volume",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "foreign"
+                      },
+                      "groupBy": [
+                        "host",
+                        "datacenter",
+                        "volume"
+                      ]
+                    }
+                  },
+                  "config": {
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "visible": true,
+                      "unit": "bytes"
+                    },
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "visible": false,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 10,
+                "x": 0,
+                "y": 0
+              }
+            },
+            {
+              "card": {
+                "title": "Total",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "timeseries",
+                  "source": {
+                    "type": "metric",
+                    "metric": {
+                      "id": {
+                        "datasetId": "$dataset_telegraf_diskMetrics",
+                        "name": "total"
+                      },
+                      "name": "total",
+                      "label": "Total",
+                      "type": "gauge",
+                      "unit": "bytes",
+                      "description": "Total Bytes\n",
+                      "rollup": "avg",
+                      "aggregate": "sum",
+                      "interval": null,
+                      "userDefined": true,
+                      "heuristics": {
+                        "validLinkLabels": [
+                          "Host",
+                          "volume"
+                        ],
+                        "numOfPoints": "375",
+                        "cardinality": "3",
+                        "__typename": "MetricHeuristics"
+                      },
+                      "datasetId": "$dataset_telegraf_diskMetrics",
+                      "link": {
+                        "targetDataset": "$dataset_server_volume",
+                        "srcFields": [
+                          "host",
+                          "datacenter",
+                          "volume"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter",
+                          "volume"
+                        ],
+                        "label": "volume",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "foreign"
+                      },
+                      "groupBy": [
+                        "host",
+                        "datacenter",
+                        "volume"
+                      ]
+                    }
+                  },
+                  "config": {
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "visible": true,
+                      "unit": "bytes"
+                    },
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "visible": false,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 10,
+                "x": 6,
+                "y": 0
+              }
+            },
+            {
+              "card": {
+                "title": "Used",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "timeseries",
+                  "source": {
+                    "type": "metric",
+                    "metric": {
+                      "id": {
+                        "datasetId": "$dataset_telegraf_diskMetrics",
+                        "name": "used"
+                      },
+                      "name": "used",
+                      "label": "Used",
+                      "type": "gauge",
+                      "unit": "bytes",
+                      "description": "Total Bytes used\n",
+                      "rollup": "avg",
+                      "aggregate": "sum",
+                      "interval": null,
+                      "userDefined": true,
+                      "heuristics": {
+                        "validLinkLabels": [
+                          "Host",
+                          "volume"
+                        ],
+                        "numOfPoints": "375",
+                        "cardinality": "3",
+                        "__typename": "MetricHeuristics"
+                      },
+                      "datasetId": "$dataset_telegraf_diskMetrics",
+                      "link": {
+                        "targetDataset": "$dataset_server_volume",
+                        "srcFields": [
+                          "host",
+                          "datacenter",
+                          "volume"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter",
+                          "volume"
+                        ],
+                        "label": "volume",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "foreign"
+                      },
+                      "groupBy": [
+                        "host",
+                        "datacenter",
+                        "volume"
+                      ]
+                    }
+                  },
+                  "config": {
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "visible": true,
+                      "unit": "bytes"
+                    },
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "visible": false,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 10,
+                "x": 6,
+                "y": 10
+              }
+            },
+            {
+              "card": {
+                "title": "Used Percent (Max)",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "timeseries",
+                  "source": {
+                    "type": "metric",
+                    "metric": {
+                      "id": {
+                        "datasetId": "$dataset_telegraf_diskMetrics",
+                        "name": "used_percent"
+                      },
+                      "name": "used_percent",
+                      "label": "Used Percent (Max)",
+                      "type": "gauge",
+                      "unit": "%",
+                      "description": "Maximum Percentage of volume used over rollup timeframe. This metric acts similar to an avg aggregation, however when watching longer timeframes the\naverage can be misleading and does not detect filesystems that are filling up quickly.\n",
+                      "rollup": "max",
+                      "aggregate": "avg",
+                      "interval": null,
+                      "userDefined": true,
+                      "heuristics": {
+                        "validLinkLabels": [
+                          "Host",
+                          "volume"
+                        ],
+                        "numOfPoints": "375",
+                        "cardinality": "3",
+                        "__typename": "MetricHeuristics"
+                      },
+                      "datasetId": "$dataset_telegraf_diskMetrics",
+                      "link": {
+                        "targetDataset": "$dataset_server_volume",
+                        "srcFields": [
+                          "host",
+                          "datacenter",
+                          "volume"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter",
+                          "volume"
+                        ],
+                        "label": "volume",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "foreign"
+                      },
+                      "groupBy": [
+                        "host",
+                        "datacenter",
+                        "volume"
+                      ]
+                    }
+                  },
+                  "config": {
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "visible": true,
+                      "unit": "%"
+                    },
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "visible": false,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 10,
+                "x": 0,
+                "y": 10
+              }
+            },
+            {
+              "card": {
+                "cardType": "datavis",
+                "title": "Inodes Free",
+                "visualization": {
+                  "type": "timeseries",
+                  "source": {
+                    "type": "metric",
+                    "metric": {
+                      "id": {
+                        "datasetId": "$dataset_telegraf_diskMetrics",
+                        "name": "inodes_free"
+                      },
+                      "name": "inodes_free",
+                      "label": "inodes_free",
+                      "type": "gauge",
+                      "unit": "",
+                      "description": "Auto Detected Metric",
+                      "rollup": "avg",
+                      "aggregate": "sum",
+                      "interval": null,
+                      "userDefined": false,
+                      "heuristics": {
+                        "validLinkLabels": [
+                          "Host",
+                          "volume"
+                        ],
+                        "numOfPoints": "375",
+                        "cardinality": "3",
+                        "__typename": "MetricHeuristics"
+                      },
+                      "datasetId": "$dataset_telegraf_diskMetrics",
+                      "link": {
+                        "targetDataset": "$dataset_server_volume",
+                        "srcFields": [
+                          "host",
+                          "datacenter",
+                          "volume"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter",
+                          "volume"
+                        ],
+                        "label": "volume",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "foreign"
+                      },
+                      "groupBy": [
+                        "host",
+                        "datacenter",
+                        "volume"
+                      ]
+                    }
+                  },
+                  "config": {
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "visible": true,
+                      "unit": ""
+                    },
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "visible": false,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 10,
+                "x": 6,
+                "y": 20
+              }
+            },
+            {
+              "card": {
+                "title": "Inodes Used",
+                "cardType": "datavis",
+                "visualization": {
+                  "type": "timeseries",
+                  "source": {
+                    "type": "metric",
+                    "metric": {
+                      "id": {
+                        "datasetId": "$dataset_telegraf_diskMetrics",
+                        "name": "inodes_used"
+                      },
+                      "name": "inodes_used",
+                      "label": "Inodes Used",
+                      "type": "gauge",
+                      "unit": "",
+                      "description": "Total Inodes used\n",
+                      "rollup": "avg",
+                      "aggregate": "sum",
+                      "interval": null,
+                      "userDefined": true,
+                      "heuristics": {
+                        "validLinkLabels": [
+                          "Host",
+                          "volume"
+                        ],
+                        "numOfPoints": "375",
+                        "cardinality": "3",
+                        "__typename": "MetricHeuristics"
+                      },
+                      "datasetId": "$dataset_telegraf_diskMetrics",
+                      "link": {
+                        "targetDataset": "$dataset_server_volume",
+                        "srcFields": [
+                          "host",
+                          "datacenter",
+                          "volume"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter",
+                          "volume"
+                        ],
+                        "label": "volume",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "foreign"
+                      },
+                      "groupBy": [
+                        "host",
+                        "datacenter",
+                        "volume"
+                      ]
+                    }
+                  },
+                  "config": {
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "visible": true,
+                      "unit": ""
+                    },
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "visible": false,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 10,
+                "x": 0,
+                "y": 20
+              }
+            }
+          ]
+        }
+      ]
+   }

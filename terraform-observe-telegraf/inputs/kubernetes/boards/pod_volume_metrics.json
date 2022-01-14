@@ -1,0 +1,186 @@
+{
+  "bindings": {
+    "pod_volume_metrics": "${pod_volume_metrics}"
+  },
+  "sections": [
+    {
+      "card": {
+        "cardType": "section",
+        "title": "Summary",
+        "closed": false
+      },
+      "items": [
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Capacity",
+            "visualization": {
+              "type": "singlevalue",
+              "source": {
+                "type": "metric",
+                "metric": {
+                  "name": "capacity_bytes",
+                  "label": "Capacity Bytes",
+                  "type": "gauge",
+                  "unit": "bytes",
+                  "description": "Total capacity (bytes) of the filesystems underlying storage",
+                  "rollup": "avg",
+                  "aggregate": "sum",
+                  "interval": null,
+                  "__typename": "Metric",
+                  "datasetId": "$pod_volume_metrics",
+                  "link": ${link},
+                  "groupBy": []
+                }
+              },
+              "config": {
+                "type": "singlefield",
+                "fieldConfig": {
+                  "visible": false
+                },
+                "color": "Default",
+                "thresholds": null,
+                "colorConfigType": "Color"
+              }
+            }
+          },
+          "layout": {
+            "h": 10,
+            "w": 2,
+            "x": 0,
+            "y": 0
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Capacity Bytes",
+            "visualization": {
+              "type": "timeseries",
+              "source": {
+                "type": "metric",
+                "metric": {
+                  "name": "capacity_bytes",
+                  "label": "Capacity Bytes",
+                  "type": "gauge",
+                  "unit": "bytes",
+                  "description": "Total capacity (bytes) of the filesystems underlying storage",
+                  "rollup": "avg",
+                  "aggregate": "sum",
+                  "interval": null,
+                  "__typename": "Metric",
+                  "datasetId": "$pod_volume_metrics",
+                  "link": ${link},
+                  "groupBy": ${group_by}
+                }
+              },
+              "config": {
+                "type": "xy",
+                "xConfig": {
+                  "visible": false
+                },
+                "yConfig": {
+                  "visible": true,
+                  "unit": "bytes"
+                },
+                "color": "Default",
+                "hideGridLines": true
+              }
+            }
+          },
+          "layout": {
+            "w": 10,
+            "h": 10,
+            "x": 2,
+            "y": 0
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Used",
+            "visualization": {
+              "type": "singlevalue",
+              "source": {
+                "type": "metric",
+                "metric": {
+                  "name": "used_bytes",
+                  "label": "Used Bytes",
+                  "type": "gauge",
+                  "unit": "bytes",
+                  "description": "Bytes used for a specific task on the filesystem. This may differ from the total bytes used on the filesystem and may not equal CapacityBytes - AvailableBytes",
+                  "rollup": "avg",
+                  "aggregate": "sum",
+                  "interval": null,
+                  "__typename": "Metric",
+                  "datasetId": "$pod_volume_metrics",
+                  "link": ${link},
+                  "groupBy": []
+                }
+              },
+              "config": {
+                "type": "singlefield",
+                "fieldConfig": {
+                  "visible": false
+                },
+                "color": "Default",
+                "thresholds": null,
+                "colorConfigType": "Color"
+              }
+            }
+          },
+          "layout": {
+            "h": 11,
+            "w": 2,
+            "x": 0,
+            "y": 10
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Used Bytes",
+            "visualization": {
+              "type": "timeseries",
+              "source": {
+                "type": "metric",
+                "metric": {
+                  "name": "used_bytes",
+                  "label": "Used Bytes",
+                  "type": "gauge",
+                  "unit": "bytes",
+                  "description": "Bytes used for a specific task on the filesystem. This may differ from the total bytes used on the filesystem and may not equal CapacityBytes - AvailableBytes",
+                  "rollup": "avg",
+                  "aggregate": "sum",
+                  "interval": null,
+                  "__typename": "Metric",
+                  "datasetId": "$pod_volume_metrics",
+                  "link": ${link},
+                  "groupBy": ${group_by}
+                }
+              },
+              "config": {
+                "type": "xy",
+                "xConfig": {
+                  "visible": false
+                },
+                "yConfig": {
+                  "visible": true,
+                  "unit": "bytes"
+                },
+                "color": "Default",
+                "hideGridLines": true
+              }
+            }
+          },
+          "layout": {
+            "h": 11,
+            "w": 10,
+            "x": 2,
+            "y": 10
+          }
+        }
+      ]
+    }
+  ]
+}

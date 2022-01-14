@@ -1,0 +1,393 @@
+{
+  "bindings": {
+    "container_metrics": "${container_metrics}"
+  },
+  "sections": [
+    {
+      "card": {
+        "cardType": "section",
+        "closed": false,
+        "title": "Summary"
+      },
+      "items": [
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "CPU Usage Cores",
+            "visualization": {
+              "binding": {
+                "field": null,
+                "type": "singlefield"
+              },
+              "config": {
+                "color": "Default",
+                "colorConfigType": "Color",
+                "fieldConfig": {
+                  "visible": false
+                },
+                "thresholds": null,
+                "type": "singlefield"
+              },
+              "source": {
+                "metric": {
+                  "__typename": "Metric",
+                  "aggregate": "sum",
+                  "datasetId": "$container_metrics",
+                  "description": "Total CPU usage (sum of all cores) averaged over the sample window",
+                  "groupBy": [],
+                  "interval": null,
+                  "label": "CPU Usage Cores",
+                  "link": ${link},
+                  "name": "cpu_usage_cores",
+                  "rollup": "avg",
+                  "type": "gauge",
+                  "unit": ""
+                },
+                "type": "metric"
+              },
+              "type": "singlevalue"
+            }
+          },
+          "layout": {
+            "h": 10,
+            "w": 2,
+            "x": 0,
+            "y": 0
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "CPU Usage Cores",
+            "visualization": {
+              "binding": {
+                "type": "xy",
+                "x": null,
+                "y": null
+              },
+              "config": {
+                "color": "Default",
+                "hideGridLines": true,
+                "type": "xy",
+                "xConfig": {
+                  "visible": false
+                },
+                "yConfig": {
+                  "unit": "",
+                  "visible": true
+                }
+              },
+              "source": {
+                "metric": {
+                  "__typename": "Metric",
+                  "aggregate": "sum",
+                  "datasetId": "$container_metrics",
+                  "description": "Total CPU usage (sum of all cores) averaged over the sample window",
+                  "groupBy": ${group_by},
+                  "interval": null,
+                  "label": "CPU Usage Cores",
+                  "link": ${link},
+                  "name": "cpu_usage_cores",
+                  "rollup": "avg",
+                  "type": "gauge",
+                  "unit": ""
+                },
+                "type": "metric"
+              },
+              "type": "timeseries"
+            }
+          },
+          "layout": {
+            "h": 10,
+            "w": 10,
+            "x": 2,
+            "y": 0
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Memory Usage",
+            "visualization": {
+              "binding": {
+                "field": null,
+                "type": "singlefield"
+              },
+              "config": {
+                "color": "Default",
+                "colorConfigType": "Color",
+                "fieldConfig": {
+                  "visible": false
+                },
+                "thresholds": null,
+                "type": "singlefield"
+              },
+              "source": {
+                "metric": {
+                  "__typename": "Metric",
+                  "aggregate": "sum",
+                  "datasetId": "$container_metrics",
+                  "description": "Total memory in use. This includes all memory regardless of when it was accessed",
+                  "groupBy": [],
+                  "interval": null,
+                  "label": "Memory Usage",
+                  "link": ${link},
+                  "name": "memory_usage_bytes",
+                  "rollup": "avg",
+                  "type": "gauge",
+                  "unit": "bytes"
+                },
+                "type": "metric"
+              },
+              "type": "singlevalue"
+            }
+          },
+          "layout": {
+            "h": 11,
+            "w": 2,
+            "x": 0,
+            "y": 10
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Memory Usage",
+            "visualization": {
+              "binding": {
+                "type": "xy",
+                "x": null,
+                "y": null
+              },
+              "config": {
+                "color": "Default",
+                "hideGridLines": true,
+                "type": "xy",
+                "xConfig": {
+                  "visible": false
+                },
+                "yConfig": {
+                  "unit": "bytes",
+                  "visible": true
+                }
+              },
+              "source": {
+                "metric": {
+                  "__typename": "Metric",
+                  "aggregate": "sum",
+                  "datasetId": "$container_metrics",
+                  "description": "Total memory in use. This includes all memory regardless of when it was accessed",
+                  "groupBy": ${group_by},
+                  "interval": null,
+                  "label": "Memory Usage",
+                  "link": ${link},
+                  "name": "memory_usage_bytes",
+                  "rollup": "avg",
+                  "type": "gauge",
+                  "unit": "bytes"
+                },
+                "type": "metric"
+              },
+              "type": "timeseries"
+            }
+          },
+          "layout": {
+            "h": 11,
+            "w": 10,
+            "x": 2,
+            "y": 10
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Major Page Faults",
+            "visualization": {
+              "binding": {
+                "field": null,
+                "type": "singlefield"
+              },
+              "config": {
+                "color": "Default",
+                "colorConfigType": "Threshold",
+                "fieldConfig": {
+                  "visible": false
+                },
+                "thresholds": {
+                   "startingColor": "Default",
+                   "thresholds": [
+                       {
+                         "exceedsColor": "Yellow",
+                         "value": 0.01
+                       }
+                   ]
+                },
+                "type": "singlefield"
+              },
+              "source": {
+                "metric": {
+                  "__typename": "Metric",
+                  "aggregate": "sum",
+                  "datasetId": "$container_metrics",
+                  "description": "Cumulative number of major page faults",
+                  "groupBy": [],
+                  "interval": null,
+                  "label": "Major Page Faults",
+                  "link": ${link},
+                  "name": "memory_major_page_faults",
+                  "resolution": "AUTO",
+                  "rollup": "rate",
+                  "type": "cumulativeCounter",
+                  "unit": "/s"
+                },
+                "type": "metric"
+              },
+              "type": "singlevalue"
+            }
+          },
+          "layout": {
+            "h": 8,
+            "w": 3,
+            "x": 0,
+            "y": 21
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Minor Page Faults",
+            "visualization": {
+              "binding": {
+                "field": null,
+                "type": "singlefield"
+              },
+              "config": {
+                "color": "Default",
+                "colorConfigType": "Color",
+                "fieldConfig": {
+                  "visible": false
+                },
+                "thresholds": null,
+                "type": "singlefield"
+              },
+              "source": {
+                "metric": {
+                  "__typename": "Metric",
+                  "aggregate": "sum",
+                  "datasetId": "$container_metrics",
+                  "description": "Cumulative number of minor page faults",
+                  "groupBy": [],
+                  "interval": null,
+                  "label": "Minor Page Faults",
+                  "link": ${link},
+                  "name": "memory_page_faults",
+                  "rollup": "rate",
+                  "type": "cumulativeCounter",
+                  "unit": "/s"
+                },
+                "type": "metric"
+              },
+              "type": "singlevalue"
+            }
+          },
+          "layout": {
+            "h": 8,
+            "w": 3,
+            "x": 3,
+            "y": 21
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "RSS Memory",
+            "visualization": {
+              "binding": {
+                "field": null,
+                "type": "singlefield"
+              },
+              "config": {
+                "color": "Default",
+                "colorConfigType": "Color",
+                "fieldConfig": {
+                  "visible": false
+                },
+                "thresholds": null,
+                "type": "singlefield"
+              },
+              "source": {
+                "metric": {
+                  "__typename": "Metric",
+                  "aggregate": "sum",
+                  "datasetId": "$container_metrics",
+                  "description": "The amount of anonymous and swap cache memory (includes transparent hugepages)",
+                  "groupBy": [],
+                  "interval": null,
+                  "label": "RSS Memory",
+                  "link": ${link},
+                  "name": "memory_rss_bytes",
+                  "rollup": "avg",
+                  "type": "gauge",
+                  "unit": "bytes"
+                },
+                "type": "metric"
+              },
+              "type": "singlevalue"
+            }
+          },
+          "layout": {
+            "h": 8,
+            "w": 3,
+            "x": 6,
+            "y": 21
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Working Set Memory",
+            "visualization": {
+              "binding": {
+                "field": null,
+                "type": "singlefield"
+              },
+              "config": {
+                "color": "Default",
+                "colorConfigType": "Color",
+                "fieldConfig": {
+                  "visible": false
+                },
+                "thresholds": null,
+                "type": "singlefield"
+              },
+              "source": {
+                "metric": {
+                  "__typename": "Metric",
+                  "aggregate": "sum",
+                  "datasetId": "$container_metrics",
+                  "description": "The amount of working set memory. This includes recently accessed memory, dirty memory, and kernel memory. WorkingSetBytes is at most equal to UsageBytes",
+                  "groupBy": [],
+                  "interval": null,
+                  "label": "Working Set Memory",
+                  "link": ${link},
+                  "name": "memory_working_set_bytes",
+                  "rollup": "avg",
+                  "type": "gauge",
+                  "unit": "bytes"
+                },
+                "type": "metric"
+              },
+              "type": "singlevalue"
+            }
+          },
+          "layout": {
+            "h": 8,
+            "w": 3,
+            "x": 9,
+            "y": 21
+          }
+        }
+      ]
+    }
+  ]
+}

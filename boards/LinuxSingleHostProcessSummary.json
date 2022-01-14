@@ -1,0 +1,337 @@
+{
+  "bindings": {
+        "dataset_telegraf_processListMetrics":"${dataset_telegraf_processListMetrics}",
+        "dataset_server_host": "${dataset_server_host}",
+        "dataset_telegraf_cPUMetrics": "${dataset_telegraf_cPUMetrics}",
+        "dataset_telegraf_memMetrics": "${dataset_telegraf_memMetrics}"
+      },
+      "sections": [
+        {
+          "card": {
+            "cardType": "section",
+            "title": "Summary",
+            "closed": false
+          },
+          "items": [
+            {
+              "card": {
+                "cardType": "datavis",
+                "title": "Processes - CPU Usage",
+                "visualization": {
+                  "type": "timeseries",
+                  "source": {
+                    "type": "metric",
+                    "metric": {
+                      "id": {
+                        "datasetId": "$dataset_telegraf_processListMetrics",
+                        "name": "cpu_usage"
+                      },
+                      "name": "cpu_usage",
+                      "label": "CPU Usage",
+                      "type": "gauge",
+                      "unit": "%",
+                      "description": "Percent of CPU core used by process\n",
+                      "rollup": "avg",
+                      "aggregate": "sum",
+                      "interval": null,
+                      "userDefined": true,
+                      "heuristics": {
+                        "validLinkLabels": [
+                          "Host"
+                        ],
+                        "numOfPoints": "1860",
+                        "cardinality": "30",
+                        "__typename": "MetricHeuristics"
+                      },
+                      "datasetId": "$dataset_telegraf_processListMetrics",
+                      "link": {
+                        "targetDataset": "$dataset_server_host",
+                        "srcFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "label": "Host",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "foreign"
+                      },
+                      "groupBy": [
+                        [
+                          "host",
+                          "datacenter"
+                        ],
+                        "process_name"
+                      ]
+                    }
+                  },
+                  "config": {
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "visible": true,
+                      "unit": "%"
+                    },
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "visible": false,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 11,
+                "x": 0,
+                "y": 0
+              }
+            },
+            {
+              "card": {
+                "cardType": "datavis",
+                "title": "Processes - Memory Usage",
+                "visualization": {
+                  "type": "timeseries",
+                  "source": {
+                    "type": "metric",
+                    "metric": {
+                      "id": {
+                        "datasetId": "$dataset_telegraf_processListMetrics",
+                        "name": "memory_usage"
+                      },
+                      "name": "memory_usage",
+                      "label": "Memory Usage",
+                      "type": "gauge",
+                      "unit": "%",
+                      "description": "Percentage of memory being used by process\n",
+                      "rollup": "avg",
+                      "aggregate": "sum",
+                      "interval": null,
+                      "userDefined": true,
+                      "heuristics": {
+                        "validLinkLabels": [
+                          "Host"
+                        ],
+                        "numOfPoints": "1860",
+                        "cardinality": "30",
+                        "__typename": "MetricHeuristics"
+                      },
+                      "datasetId": "$dataset_telegraf_processListMetrics",
+                      "link": {
+                        "targetDataset": "$dataset_server_host",
+                        "srcFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "label": "Host",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "foreign"
+                      },
+                      "groupBy": [
+                        [
+                          "host",
+                          "datacenter"
+                        ],
+                        "process_name"
+                      ]
+                    }
+                  },
+                  "config": {
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "visible": true,
+                      "unit": "%"
+                    },
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "visible": false,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 11,
+                "x": 6,
+                "y": 0
+              }
+            },
+            {
+              "card": {
+                "cardType": "datavis",
+                "title": "CPU - Utilization",
+                "visualization": {
+                  "type": "timeseries",
+                  "source": {
+                    "type": "metric",
+                    "metric": {
+                      "id": {
+                        "datasetId": "$dataset_telegraf_cPUMetrics",
+                        "name": "cpu_utilization"
+                      },
+                      "name": "cpu_utilization",
+                      "label": "CPU Utilization",
+                      "type": "gauge",
+                      "unit": "%",
+                      "description": "Percentage of time this CPU spent performing various activities and not waiting on I/O operations (aka. 100-idle)\n",
+                      "rollup": "avg",
+                      "aggregate": "sum",
+                      "interval": null,
+                      "userDefined": true,
+                      "heuristics": {
+                        "validLinkLabels": [
+                          "Host"
+                        ],
+                        "numOfPoints": "515",
+                        "cardinality": "3",
+                        "__typename": "MetricHeuristics"
+                      },
+                      "datasetId": "$dataset_telegraf_cPUMetrics",
+                      "link": {
+                        "targetDataset": "$dataset_server_host",
+                        "srcFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "label": "Host",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "foreign"
+                      },
+                      "groupBy": [
+                        "host",
+                        "datacenter"
+                      ]
+                    }
+                  },
+                  "config": {
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "visible": true,
+                      "unit": "%"
+                    },
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "visible": false,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 10,
+                "x": 0,
+                "y": 11
+              }
+            },
+            {
+              "card": {
+                "cardType": "datavis",
+                "title": "Memory - Used Percent",
+                "visualization": {
+                  "type": "timeseries",
+                  "source": {
+                    "type": "metric",
+                    "metric": {
+                      "id": {
+                        "datasetId": "$dataset_telegraf_memMetrics",
+                        "name": "used_percent"
+                      },
+                      "name": "used_percent",
+                      "label": "Used Percent",
+                      "type": "gauge",
+                      "unit": "%",
+                      "description": "Percentage of total memory in use\n",
+                      "rollup": "avg",
+                      "aggregate": "sum",
+                      "interval": null,
+                      "userDefined": true,
+                      "heuristics": {
+                        "validLinkLabels": [
+                          "Host"
+                        ],
+                        "numOfPoints": "1080",
+                        "cardinality": "3",
+                        "__typename": "MetricHeuristics"
+                      },
+                      "datasetId": "$dataset_telegraf_memMetrics",
+                      "link": {
+                        "targetDataset": "$dataset_server_host",
+                        "srcFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "label": "Host",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "foreign"
+                      },
+                      "groupBy": [
+                        "host",
+                        "datacenter"
+                      ]
+                    }
+                  },
+                  "config": {
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "visible": true,
+                      "unit": "%"
+                    },
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "visible": false,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 10,
+                "x": 6,
+                "y": 11
+              }
+            }
+          ]
+        }
+      ]
+    }

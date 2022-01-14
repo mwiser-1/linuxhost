@@ -1,0 +1,304 @@
+{
+  "bindings": {
+    "pod_network_metrics": "${pod_network_metrics}"
+  },
+  "sections": [
+    {
+      "card": {
+        "cardType": "section",
+        "closed": false,
+        "title": "Summary"
+      },
+      "items": [
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Bytes Sent",
+            "visualization": {
+              "binding": {
+                "field": null,
+                "type": "singlefield"
+              },
+              "config": {
+                "color": "Default",
+                "colorConfigType": "Color",
+                "fieldConfig": {
+                  "visible": false
+                },
+                "thresholds": null,
+                "type": "singlefield"
+              },
+              "source": {
+                "metric": {
+                  "__typename": "Metric",
+                  "aggregate": "sum",
+                  "datasetId": "$pod_network_metrics",
+                  "description": "Total bytes sent",
+                  "groupBy": [],
+                  "label": "Bytes Sent",
+                  "link": ${link},
+                  "name": "tx_bytes",
+                  "rollup": "rate",
+                  "type": "cumulativeCounter",
+                  "unit": "bytes/s"
+                },
+                "type": "metric"
+              },
+              "type": "singlevalue"
+            }
+          },
+          "layout": {
+            "h": 10,
+            "w": 2,
+            "x": 0,
+            "y": 0
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Bytes Sent",
+            "visualization": {
+              "binding": {
+                "type": "xy",
+                "x": null,
+                "y": null
+              },
+              "config": {
+                "color": "Default",
+                "hideGridLines": true,
+                "type": "xy",
+                "xConfig": {
+                  "visible": false
+                },
+                "yConfig": {
+                  "unit": "bytes",
+                  "visible": true
+                }
+              },
+              "source": {
+                "metric": {
+                  "__typename": "Metric",
+                  "aggregate": "sum",
+                  "datasetId": "$pod_network_metrics",
+                  "description": "Total bytes sent",
+                  "groupBy": ${group_by},
+                  "label": "Bytes Sent",
+                  "link": ${link},
+                  "name": "tx_bytes",
+                  "rollup": "rate",
+                  "type": "cumulativeCounter",
+                  "unit": "bytes/s"
+                },
+                "type": "metric"
+              },
+              "type": "timeseries"
+            }
+          },
+          "layout": {
+            "h": 10,
+            "w": 10,
+            "x": 2,
+            "y": 0
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Bytes Received",
+            "visualization": {
+              "binding": {
+                "field": null,
+                "type": "singlefield"
+              },
+              "config": {
+                "color": "Default",
+                "colorConfigType": "Color",
+                "fieldConfig": {
+                  "visible": false
+                },
+                "thresholds": null,
+                "type": "singlefield"
+              },
+              "source": {
+                "metric": {
+                  "__typename": "Metric",
+                  "aggregate": "sum",
+                  "datasetId": "$pod_network_metrics",
+                  "description": "Total bytes received",
+                  "groupBy": [],
+                  "label": "Bytes Received",
+                  "link": ${link},
+                  "name": "rx_bytes",
+                  "rollup": "rate",
+                  "type": "cumulativeCounter",
+                  "unit": "bytes/s"
+                },
+                "type": "metric"
+              },
+              "type": "singlevalue"
+            }
+          },
+          "layout": {
+            "h": 11,
+            "w": 2,
+            "x": 0,
+            "y": 10
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Bytes Received",
+            "visualization": {
+              "binding": {
+                "type": "xy",
+                "x": null,
+                "y": null
+              },
+              "config": {
+                "color": "Default",
+                "hideGridLines": true,
+                "type": "xy",
+                "xConfig": {
+                  "visible": false
+                },
+                "yConfig": {
+                  "unit": "bytes",
+                  "visible": true
+                }
+              },
+              "source": {
+                "metric": {
+                  "__typename": "Metric",
+                  "aggregate": "sum",
+                  "datasetId": "$pod_network_metrics",
+                  "description": "Total bytes received",
+                  "groupBy": ${group_by},
+                  "label": "Bytes Received",
+                  "link": ${link},
+                  "name": "rx_bytes",
+                  "rollup": "rate",
+                  "type": "cumulativeCounter",
+                  "unit": "bytes/s"
+                },
+                "type": "metric"
+              },
+              "type": "timeseries"
+            }
+          },
+          "layout": {
+            "h": 11,
+            "w": 10,
+            "x": 2,
+            "y": 10
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Tx Errors",
+            "visualization": {
+              "binding": {
+                "field": null,
+                "type": "singlefield"
+              },
+              "config": {
+                "color": "Default",
+                "colorConfigType": "Threshold",
+                "fieldConfig": {
+                  "visible": false
+                },
+                "thresholds": {
+                  "startingColor": "Default",
+                  "thresholds": [
+                    {
+                      "exceedsColor": "Yellow",
+                      "value": 0.001
+                    }
+                  ]
+                },
+                "type": "singlefield"
+              },
+              "source": {
+                "metric": {
+                  "__typename": "Metric",
+                  "aggregate": "sum",
+                  "datasetId": "$pod_network_metrics",
+                  "description": "Total number of transmission errors",
+                  "groupBy": [],
+                  "label": "Tx Errors",
+                  "link": ${link},
+                  "name": "tx_errors",
+                  "rollup": "rate",
+                  "type": "cumulativeCounter",
+                  "unit": "/s"
+                },
+                "type": "metric"
+              },
+              "type": "singlevalue"
+            }
+          },
+          "layout": {
+            "h": 8,
+            "w": 6,
+            "x": 7,
+            "y": 21
+          }
+        },
+        {
+          "card": {
+            "cardType": "datavis",
+            "title": "Rx Errors",
+            "visualization": {
+              "binding": {
+                "field": null,
+                "type": "singlefield"
+              },
+              "config": {
+                "color": "Default",
+                "colorConfigType": "Threshold",
+                "fieldConfig": {
+                  "visible": false
+                },
+                "thresholds": {
+                  "startingColor": "Default",
+                  "thresholds": [
+                    {
+                      "exceedsColor": "Yellow",
+                      "value": 0.001
+                    }
+                  ]
+                },
+                "type": "singlefield"
+              },
+              "source": {
+                "metric": {
+                  "__typename": "Metric",
+                  "aggregate": "sum",
+                  "datasetId": "$pod_network_metrics",
+                  "description": "Total receive error count",
+                  "groupBy": [],
+                  "label": "Rx Errors",
+                  "link": ${link},
+                  "name": "rx_errors",
+                  "rollup": "rate",
+                  "type": "cumulativeCounter",
+                  "unit": "/s"
+                },
+                "type": "metric"
+              },
+              "type": "singlevalue"
+            }
+          },
+          "layout": {
+            "h": 8,
+            "w": 6,
+            "x": 0,
+            "y": 21
+          }
+        }
+      ]
+    }
+  ]
+}

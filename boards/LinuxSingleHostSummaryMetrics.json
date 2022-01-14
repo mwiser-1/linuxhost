@@ -1,0 +1,545 @@
+{
+       "bindings": {
+        "dataset_telegraf_memMetrics": "${dataset_telegraf_memMetrics}",
+        "dataset_server_host": "${dataset_server_host}",
+        "dataset_telegraf_cPUMetrics": "${dataset_telegraf_cPUMetrics}",
+        "dataset_telegraf_netMetrics": "${dataset_telegraf_netMetrics}",
+        "dataset_telegraf_diskMetrics": "${dataset_telegraf_diskMetrics}"
+      },
+      "sections": [
+        {
+          "card": {
+            "cardType": "section",
+            "closed": false,
+            "title": "Summary"
+          },
+          "items": [
+            {
+              "card": {
+                "cardType": "datavis",
+                "title": "host",
+                "visualization": {
+                  "config": {
+                    "showPercentage": false,
+                    "style": "name",
+                    "type": "list"
+                  },
+                  "source": {
+                    "stat": {
+                      "fieldId": "host"
+                    },
+                    "type": "stats"
+                  },
+                  "type": "list"
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 8,
+                "x": 0,
+                "y": 0
+              }
+            },
+            {
+              "card": {
+                "cardType": "datavis",
+                "title": "datacenter",
+                "visualization": {
+                  "config": {
+                    "showPercentage": false,
+                    "style": "twocolumn",
+                    "type": "list"
+                  },
+                  "source": {
+                    "stat": {
+                      "fieldId": "datacenter"
+                    },
+                    "type": "stats"
+                  },
+                  "type": "list"
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 8,
+                "x": 6,
+                "y": 0
+              }
+            },
+            {
+              "card": {
+                "cardType": "datavis",
+                "title": "Memory - Used Percent",
+                "visualization": {
+                  "config": {
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "placement": "right",
+                      "type": "list",
+                      "visible": false
+                    },
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "unit": "%",
+                      "visible": true
+                    }
+                  },
+                  "source": {
+                    "metric": {
+                      "aggregate": "sum",
+                      "datasetId": "$dataset_telegraf_memMetrics",
+                      "description": "Percentage of total memory in use\n",
+                      "groupBy": [
+                        "host",
+                        "datacenter"
+                      ],
+                      "heuristics": {
+                        "__typename": "MetricHeuristics",
+                        "cardinality": "2",
+                        "numOfPoints": "720",
+                        "validLinkLabels": [
+                          "Host"
+                        ]
+                      },
+                      "id": {
+                        "datasetId": "$dataset_telegraf_memMetrics",
+                        "name": "used_percent"
+                      },
+                      "interval": null,
+                      "label": "Used Percent",
+                      "link": {
+                        "__typename": "ForeignKey",
+                        "dstFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "label": "Host",
+                        "srcFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "targetDataset": "$dataset_server_host",
+                        "targetStageLabel": null,
+                        "type": "foreign"
+                      },
+                      "name": "used_percent",
+                      "rollup": "avg",
+                      "type": "gauge",
+                      "unit": "%",
+                      "userDefined": true
+                    },
+                    "type": "metric"
+                  },
+                  "type": "timeseries"
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 10,
+                "x": 6,
+                "y": 8
+              }
+            },
+            {
+              "card": {
+                "cardType": "datavis",
+                "title": "CPU - Utilization",
+                "visualization": {
+                  "config": {
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "placement": "right",
+                      "type": "list",
+                      "visible": false
+                    },
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "unit": "%",
+                      "visible": true
+                    }
+                  },
+                  "source": {
+                    "metric": {
+                      "aggregate": "sum",
+                      "datasetId": "$dataset_telegraf_cPUMetrics",
+                      "description": "Percentage of time this CPU spent performing various activities and not waiting on I/O operations (aka. 100-idle)\n",
+                      "groupBy": [
+                        "host",
+                        "datacenter"
+                      ],
+                      "heuristics": {
+                        "__typename": "MetricHeuristics",
+                        "cardinality": "2",
+                        "numOfPoints": "720",
+                        "validLinkLabels": [
+                          "Host"
+                        ]
+                      },
+                      "id": {
+                        "datasetId": "$dataset_telegraf_cPUMetrics",
+                        "name": "cpu_utilization"
+                      },
+                      "interval": null,
+                      "label": "CPU Utilization",
+                      "link": {
+                        "__typename": "ForeignKey",
+                        "dstFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "label": "Host",
+                        "srcFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "targetDataset": "$dataset_server_host",
+                        "targetStageLabel": null,
+                        "type": "foreign"
+                      },
+                      "name": "cpu_utilization",
+                      "rollup": "avg",
+                      "type": "gauge",
+                      "unit": "%",
+                      "userDefined": true
+                    },
+                    "type": "metric"
+                  },
+                  "type": "timeseries"
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 10,
+                "x": 0,
+                "y": 8
+              }
+            },
+            {
+              "card": {
+                "cardType": "datavis",
+                "title": "Network - Packets Total (In and Out)",
+                "visualization": {
+                  "config": {
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "placement": "right",
+                      "type": "list",
+                      "visible": false
+                    },
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "unit": "",
+                      "visible": true
+                    }
+                  },
+                  "source": {
+                    "metric": {
+                      "aggregate": "sum",
+                      "datasetId": "$dataset_telegraf_netMetrics",
+                      "description": "Packets transmitted\n",
+                      "groupBy": [
+                        "host",
+                        "datacenter"
+                      ],
+                      "heuristics": {
+                        "__typename": "MetricHeuristics",
+                        "cardinality": "2",
+                        "numOfPoints": "182",
+                        "validLinkLabels": [
+                          "Host",
+                          "interface"
+                        ]
+                      },
+                      "id": {
+                        "datasetId": "$dataset_telegraf_netMetrics",
+                        "name": "packets_total"
+                      },
+                      "interval": null,
+                      "label": "Packets Total (In and Out)",
+                      "link": {
+                        "__typename": "ForeignKey",
+                        "dstFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "label": "Host",
+                        "srcFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "targetDataset": "$dataset_server_host",
+                        "targetStageLabel": null,
+                        "type": "foreign"
+                      },
+                      "name": "packets_total",
+                      "rollup": "rate",
+                      "type": "gauge",
+                      "unit": "",
+                      "userDefined": true
+                    },
+                    "type": "metric"
+                  },
+                  "type": "timeseries"
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 11,
+                "x": 6,
+                "y": 18
+              }
+            },
+            {
+              "card": {
+                "cardType": "datavis",
+                "title": "Network - Bytes Total (In and Out)",
+                "visualization": {
+                  "config": {
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "placement": "right",
+                      "type": "list",
+                      "visible": false
+                    },
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "unit": "bytes",
+                      "visible": true
+                    }
+                  },
+                  "source": {
+                    "metric": {
+                      "aggregate": "sum",
+                      "datasetId": "$dataset_telegraf_netMetrics",
+                      "description": "Bytes transmitted\n",
+                      "groupBy": [
+                        "host",
+                        "datacenter"
+                      ],
+                      "heuristics": {
+                        "__typename": "MetricHeuristics",
+                        "cardinality": "2",
+                        "numOfPoints": "182",
+                        "validLinkLabels": [
+                          "Host",
+                          "interface"
+                        ]
+                      },
+                      "id": {
+                        "datasetId": "$dataset_telegraf_netMetrics",
+                        "name": "bytes_total"
+                      },
+                      "interval": null,
+                      "label": "Bytes Total (In and Out)",
+                      "link": {
+                        "__typename": "ForeignKey",
+                        "dstFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "label": "Host",
+                        "srcFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "targetDataset": "$dataset_server_host",
+                        "targetStageLabel": null,
+                        "type": "foreign"
+                      },
+                      "name": "bytes_total",
+                      "rollup": "rate",
+                      "type": "gauge",
+                      "unit": "bytes",
+                      "userDefined": true
+                    },
+                    "type": "metric"
+                  },
+                  "type": "timeseries"
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 11,
+                "x": 0,
+                "y": 18
+              }
+            },
+            {
+              "card": {
+                "cardType": "datavis",
+                "title": "Disk - Free",
+                "visualization": {
+                  "type": "timeseries",
+                  "source": {
+                    "type": "metric",
+                    "metric": {
+                      "id": {
+                        "datasetId": "$dataset_telegraf_diskMetrics",
+                        "name": "free"
+                      },
+                      "name": "free",
+                      "label": "Free",
+                      "type": "gauge",
+                      "unit": "bytes",
+                      "description": "Total Bytes free\n",
+                      "rollup": "avg",
+                      "aggregate": "sum",
+                      "interval": null,
+                      "userDefined": true,
+                      "heuristics": {
+                        "validLinkLabels": [
+                          "Host",
+                          "volume"
+                        ],
+                        "numOfPoints": "273",
+                        "cardinality": "3",
+                        "__typename": "MetricHeuristics"
+                      },
+                      "datasetId": "$dataset_telegraf_diskMetrics",
+                      "link": {
+                        "targetDataset": "$dataset_server_host",
+                        "srcFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "label": "Host",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "foreign"
+                      },
+                      "groupBy": [
+                        "host",
+                        "datacenter"
+                      ]
+                    }
+                  },
+                  "config": {
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "visible": true,
+                      "unit": "bytes"
+                    },
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "visible": false,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 11,
+                "x": 0,
+                "y": 29
+              }
+            },
+            {
+              "card": {
+                "cardType": "datavis",
+                "title": "Disk - Used Percent (Max)",
+                "visualization": {
+                  "type": "timeseries",
+                  "source": {
+                    "type": "metric",
+                    "metric": {
+                      "id": {
+                        "datasetId": "$dataset_telegraf_diskMetrics",
+                        "name": "used_percent"
+                      },
+                      "name": "used_percent",
+                      "label": "Used Percent (Max)",
+                      "type": "gauge",
+                      "unit": "%",
+                      "description": "Maximum Percentage of volume used over rollup timeframe. This metric acts similar to an avg aggregation, however when watching longer timeframes the\naverage can be misleading and does not detect filesystems that are filling up quickly.\n",
+                      "rollup": "max",
+                      "aggregate": "avg",
+                      "interval": null,
+                      "userDefined": true,
+                      "heuristics": {
+                        "validLinkLabels": [
+                          "Host",
+                          "volume"
+                        ],
+                        "numOfPoints": "273",
+                        "cardinality": "3",
+                        "__typename": "MetricHeuristics"
+                      },
+                      "datasetId": "$dataset_telegraf_diskMetrics",
+                      "link": {
+                        "targetDataset": "$dataset_server_host",
+                        "srcFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "dstFields": [
+                          "host",
+                          "datacenter"
+                        ],
+                        "label": "Host",
+                        "targetStageLabel": null,
+                        "__typename": "ForeignKey",
+                        "type": "foreign"
+                      },
+                      "groupBy": [
+                        "host",
+                        "datacenter"
+                      ]
+                    }
+                  },
+                  "config": {
+                    "type": "xy",
+                    "xConfig": {
+                      "visible": false
+                    },
+                    "yConfig": {
+                      "visible": true,
+                      "unit": "%"
+                    },
+                    "color": "Default",
+                    "hideGridLines": true,
+                    "legend": {
+                      "visible": false,
+                      "type": "list",
+                      "placement": "right"
+                    }
+                  }
+                }
+              },
+              "layout": {
+                "w": 6,
+                "h": 11,
+                "x": 6,
+                "y": 29
+              }
+            }
+          ]
+        }
+      ]
+     
+   }
